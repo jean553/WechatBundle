@@ -1,1 +1,1 @@
-# WeChatSymfonyBundle
+# WeChatBundle
