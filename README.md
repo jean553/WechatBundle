@@ -1,1 +1,1 @@
-# WeChatBundle
+# WechatBundle
