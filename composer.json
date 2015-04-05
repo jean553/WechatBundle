@@ -1,0 +1,24 @@
+{
+    "name" : "WeChatSymfonyBundle",
+    "type" : "symfony-bundle",
+    "description" : "Symfony WeChat authentication/profile management",
+    "keywords" : ["Symfony", "Oauth2", "WeChat"],
+    "homepage" : "https://github.com/jean553/WeChatSymfonyBundle",
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name" : "Jean LELIEVRE",
+            "email" : "Jean.LELIEVRE@supinfo.com",
+            "role" : "Developer"
+        }
+    ],
+    "minimum-stability" : "beta",
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "autoload": {
+        "psr-0": { "jean553\\WeChatSymfonyBundle": "" }
+    },
+    "target-dir" : "jean553/WeChatSymfonyBundle"
+}
+
