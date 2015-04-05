@@ -1,6 +1,6 @@
 <?php
 
-namespace jean553\WeChatBundle\DependencyInjection;
+namespace jean553\WechatBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
