@@ -1,9 +1,9 @@
 {
-    "name" : "WeChatSymfonyBundle",
+    "name" : "WeChatBundle",
     "type" : "symfony-bundle",
-    "description" : "Symfony WeChat authentication/profile management",
+    "description" : "WeChat authentication/profile management bundle",
     "keywords" : ["Symfony", "Oauth2", "WeChat"],
-    "homepage" : "https://github.com/jean553/WeChatSymfonyBundle",
+    "homepage" : "https://github.com/jean553/WeChatBundle",
     "license" : "MIT",
     "authors" : [
         {
@@ -17,8 +17,8 @@
         "php": ">=5.3.2"
     },
     "autoload": {
-        "psr-0": { "jean553\\WeChatSymfonyBundle": "" }
+        "psr-0": { "jean553\\WeChatBundle": "" }
     },
-    "target-dir" : "jean553/WeChatSymfonyBundle"
+    "target-dir" : "jean553/WeChatBundle"
 }
 
