@@ -1,11 +1,11 @@
 <?php
 
-namespace jean553\WeChatSymfonyBundle;
+namespace jean553\WeChatBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class WeChatSymfonyBundle extends Bundle 
+class WeChatBundle extends Bundle 
 {
     /**
      * Build the bundle with a container
