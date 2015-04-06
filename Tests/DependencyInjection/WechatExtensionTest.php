@@ -36,9 +36,14 @@ class WechatExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $this->configuration = new ContainerBuilder();
 
+        // load a configuration
+        $loader = new WechatExtension();
+        $config = $this->getFullConfig();
+        $loader->load(array($config), $this->configuration);
+       
         $this->assertParameter('abcdefghij123456789', 'appid');
-        $this->assertParameter('123456789abcdefghij','appsecret');
-        $this->assertParameter('1a2b3c4d5e6f7g8i9j','token');
+        $this->assertParameter('123456789abcdefghij', 'appsecret');
+        $this->assertParameter('1a2b3c4d5e6f7g8i9j', 'token');
     }
 
     /**
@@ -74,11 +79,11 @@ class WechatExtensionTest extends \PHPUnit_Framework_TestCase
      */
     private function getFullConfig()
     {
-        $yaml = <<<EOF
-            appid: abcdefghij123456789
-            appsecret: 123456789abcdefghij
-            token: 1a2b3c4d5e6f7g8i9j  
-        EOF;
+        $yaml = <<<YML
+appid: abcdefghij123456789
+appsecret: 123456789abcdefghij
+token: 1a2b3c4d5e6f7g8i9j  
+YML;
 
         $parser = new Parser();
         return $parser->parse($yaml);
