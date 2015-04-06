@@ -22,9 +22,23 @@ class WechatExtension extends Extension
 
         // load the bundle configuration skeleton
         // with additional specified configurations
-        $this->processConfiguration(
+        $extensionConfiguration = $this->processConfiguration(
             $configuration,
             $configs
+        );
+
+        // set the configuration variables
+        $container->setParameter(
+            'wechat.appid',
+            $extensionConfiguration['appid']
+        );
+        $container->setParameter(
+            'wechat.appsecret',
+            $extensionConfiguration['appsecret']
+        );
+        $container->setParameter(
+            'wechat.token',
+            $extensionConfiguration['token']
         );
     }
 }

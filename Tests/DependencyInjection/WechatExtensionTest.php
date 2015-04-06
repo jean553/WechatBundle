@@ -40,10 +40,10 @@ class WechatExtensionTest extends \PHPUnit_Framework_TestCase
         $loader = new WechatExtension();
         $config = $this->getFullConfig();
         $loader->load(array($config), $this->configuration);
-       
-        $this->assertParameter('abcdefghij123456789', 'appid');
-        $this->assertParameter('123456789abcdefghij', 'appsecret');
-        $this->assertParameter('1a2b3c4d5e6f7g8i9j', 'token');
+      
+        $this->assertParameter('abcdefghij123456789', 'wechat.appid');
+        $this->assertParameter('123456789abcdefghij', 'wechat.appsecret');
+        $this->assertParameter('1a2b3c4d5e6f7g8i9j', 'wechat.token');
     }
 
     /**
