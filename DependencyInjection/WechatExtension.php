@@ -14,8 +14,9 @@ class WechatExtension extends Extension
      * Load the Wechat bundle configuration
      *
      * @param array $configs additional configurations
+     * @param ContainerBuilder $container container of the extension
      */
-    public function load(array $configs)
+    public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
 
