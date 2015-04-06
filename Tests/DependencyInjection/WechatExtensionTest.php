@@ -9,18 +9,56 @@ use jean553\WechatBundle\DependencyInjection\WechatExtension;
 class WechatExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var ContainerBuilder
+     */
+    protected $configuration;
+
+    /**
      * Test if the configuration contains
      * the required parameters
      *
      * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
      */
-    public function testParameters()
+    public function testEmptyParameters()
     {
         // load a configuration
         $loader = new WechatExtension();
         $config = $this->getEmptyConfig();
 
         $loader->load(array($config), new ContainerBuilder());
+    }
+
+    /**
+     * Test if the configuration loads
+     * correctly the given parameters
+     */
+    public function testCorrectParameters()
+    {
+        $this->configuration = new ContainerBuilder();
+
+        // load a configuration
+        $loader = new WechatExtension();
+        $config = $this->getFullConfig();
+        $loader->load(array($config), $this->configuration);
+      
+        $this->assertParameter('abcdefghij123456789', 'wechat.appid');
+        $this->assertParameter('123456789abcdefghij', 'wechat.appsecret');
+        $this->assertParameter('1a2b3c4d5e6f7g8i9j', 'wechat.token');
+    }
+
+    /**
+     * Check if the parameter value
+     * is the same as the given one
+     *
+     * @param mixed $value value to compare
+     * @param string $key configuration parameter name
+     */
+    private function assertParameter($value, $key)
+    {
+        $this->assertEquals(
+            $value, 
+            $this->configuration->getParameter($key)
+        );
     }
  
     /**
@@ -32,5 +70,22 @@ class WechatExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $parser = new Parser();
         return $parser->parse("");
+    }
+
+    /**
+     * Returns a full correct configuration
+     *
+     * @return array
+     */
+    private function getFullConfig()
+    {
+        $yaml = <<<YML
+appid: abcdefghij123456789
+appsecret: 123456789abcdefghij
+token: 1a2b3c4d5e6f7g8i9j  
+YML;
+
+        $parser = new Parser();
+        return $parser->parse($yaml);
     }
 }
