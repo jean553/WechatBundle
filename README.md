@@ -4,6 +4,8 @@
 
 # WechatBundle
 
+PHP Bundle for WeChat authentication. By developping WeChat applications, it is required to authorize access and authenticate the current user which is connected to the web application through his WeChat browser. Often, it is necessary to get the user profile data. This bundle regroups all these features.
+
 ## Run the tests
 ```
 vendor/bin/phpunit
