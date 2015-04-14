@@ -31,7 +31,7 @@ class WechatClient
             "&code=" . $code .
             "&grant_type=authorization_code";
 
-        $oauth2Response = $this->executeCurlRequest($url);
+        $oauth2Response = $this->executeGuzzleRequest($url);
 
         if(is_null($oauth2Response)) {
             return false;
@@ -43,26 +43,12 @@ class WechatClient
     }
 
     /**
-     * Execute a CURL request and returns the answer.
+     * Execute a Guzzle request and returns the answer.
      *
      * @param string $url URL to connect
      *
      * @return array|null Request response on success, null on failure
      */
-    private function executeCurlRequest($url) {
-
-        // create a CURL service according to the given URL
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-        // execute the CURL request and store the response
-        $curlResponse = curl_exec($curl);
-        curl_close($curl);
-
-        if (!$curlResponse) {
-            return null;
-        }
-
-        return json_decode($curlResponse, true);
+    private function executeGuzzleRequest($url) {
     }
 }
