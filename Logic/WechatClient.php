@@ -56,9 +56,10 @@ class WechatClient
         // create the Guzzle request client
         $client = new GuzzleHttp\Client();
 
-        $response = $client->get($url, [
-            "query" => $params
-        ]);
+        $response = $client->get(
+            $url,
+            array("query" => $params)
+        );
 
         return $response->json();
     }
