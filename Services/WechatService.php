@@ -28,6 +28,6 @@ class WechatService extends ContainerAware
             return false;
         }
 
-        return $wechat->authorize($appid, $secret, $code);
+        return $client->authorize($appid, $secret, $code);
     }
 }
