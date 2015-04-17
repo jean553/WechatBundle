@@ -17,6 +17,12 @@ class WechatClient
     private $openid;
 
     /**
+     * Constructor
+     */
+    public function __construct() {
+    }
+
+    /**
      * Authorize the user, use the appid, the URL code
      * and secret passphrase.
      *
