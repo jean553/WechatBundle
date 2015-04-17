@@ -2,8 +2,12 @@
 
 namespace jean553\WechatBundle\Logic;
 
+use jean553\WechatBundle\Traits;
+
 class WechatClient
 {
+    use StringUtilsTrait;
+
     const WECHAT_AUTH2_URL =
         "https://api.weixin.qq.com/sns/oauth2/access_token";
 
@@ -62,5 +66,25 @@ class WechatClient
         );
 
         return $response->json();
+    }
+
+    /**
+     * Returns the WeChat code
+     * located inside the URL
+     *
+     * @return string|null WeChat connection code, null on error
+     */
+    public function getWeChatCode() {
+
+        // get the current URL
+        $url = $_SERVER['REQUEST_URI'];
+
+        // return the code between the
+        // two given URL parameters
+        return $this->getSubString(
+            $url,
+            'code=',
+            '&'
+        );
     }
 }
