@@ -8,6 +8,11 @@ use jean553\WechatBundle\Logic\WechatClient;
 class WechatService extends ContainerAware
 {
     /**
+     * @var WechatClient $client wechat client
+     */
+    private WechatClient $client;
+
+    /**
      * Service function for user authorization
      * Call the WeChat authorization function
      *
@@ -21,8 +26,6 @@ class WechatService extends ContainerAware
      */
     public function authorize($appid, $secret) {
 
-        $client = new WechatClient();
-
         $code = $client->getWeChatCode();
 
         if(is_null($code)){
@@ -30,5 +33,36 @@ class WechatService extends ContainerAware
         }
 
         return $client->authorize($appid, $secret, $code);
+    }
+
+    /**
+     * Returns the user information according
+     * to a previous authentication
+     *
+     * @return array|null array which contains all
+     * the WeChat properties of the user, null on error
+     */
+    public function getUserInformation() {
+
+        $userInformation = $client->getUserInformation();
+
+        if(is_null($userInformation)) {
+            return null;
+        }
+
+        // use temporary array to avoid
+        // variables names mismatches
+        // in case of future WeChat update
+        return array (
+            'openid' => $userInformation['openid'],
+            'nickname' => $userInformation['nickname'],
+            'sex' => $userInformation['sex'],
+            'language' => $userInformation['language'],
+            'city' => $userInformation['city'],
+            'province' => $userInformation['province'],
+            'country' => $userInformation['country'],
+            'headimgurl' => $userInformation['headimgurl'],
+            'privilege' => $userInformation['privilege']
+        );
     }
 }
