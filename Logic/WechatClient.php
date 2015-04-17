@@ -41,7 +41,7 @@ class WechatClient
                 "secret" => $secret,
                 "code" => $code,
                 "grant_type" => "authorization_code"
-            );
+            )
         );
 
         if(is_null($oauth2Response)) {
