@@ -54,11 +54,6 @@ class WechatClient
         $this->openid = $oauth2Response['openid'];
         $this->accessToken = $oauth2Response['access_token'];
 
-        // get the user information
-        if(!$this->findUserInformation()) {
-            return false;
-        }
-
         return true;
     }
 
@@ -66,12 +61,10 @@ class WechatClient
      * Find the WeChat user information
      * according to the open id
      *
-     * @param string $accessToken WeChat access token
-     * @param string $openId WeChat user OpenId
-     *
-     * @return boolean get user information success or failure
+     * @return mixed returns the user information
+     * on success, returns null on failure
      */
-    private function findUserInformation() {
+    public function getUserInformation() {
 
         $oauth2Response = $this->executeGuzzleRequest(
             self::WECHAT_AUTH2_USERINFO,
@@ -82,12 +75,10 @@ class WechatClient
         );
 
         if(is_null($oauth2Response)) {
-            return false;
+            return null;
         }
 
-        print_r($oauth2Response);
-
-        return true;
+        return $oauth2Response;
     }
 
     /**
