@@ -8,11 +8,6 @@ use jean553\WechatBundle\Logic\WechatClient;
 class WechatService extends ContainerAware
 {
     /**
-     * @var WechatClient $client WeChat interactions management object
-     */
-    private WechatClient $client;
-
-    /**
      * Service function for user authorization
      * Call the WeChat authorization function
      *
