@@ -19,7 +19,7 @@ class WechatService extends ContainerAware
 
         $code = $client->getWeChatCode();
 
-        if(is_null($client->getWeChatCode()){
+        if(is_null($code)){
             return false;
         }
 
