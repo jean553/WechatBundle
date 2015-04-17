@@ -1,5 +1,5 @@
 {
-    "name" : "jean553/WechatBundle",
+    "name" : "jean553/wechat-bundle",
     "type" : "symfony-bundle",
     "description" : "Wechat authentication/profile management bundle",
     "keywords" : ["Symfony", "Oauth2", "Wechat"],
