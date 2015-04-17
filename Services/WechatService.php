@@ -12,7 +12,8 @@ class WechatService extends ContainerAware
      * Call the WeChat authorization function
      *
      * TODO: parameters must be set in the
-     * configuration file of the bundle`
+     * configuration file of the bundle
+     *
      * @param string $appid the application id
      * @param string $secret the secret string
      *
