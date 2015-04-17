@@ -2,7 +2,7 @@
 
 namespace jean553\WechatBundle\Logic;
 
-use jean553\WechatBundle\Traits;
+use jean553\WechatBundle\Traits\StringUtilsTrait;
 
 class WechatClient
 {
