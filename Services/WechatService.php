@@ -10,7 +10,14 @@ class WechatService extends ContainerAware
     /**
      * @var WechatClient $client wechat client
      */
-    private WechatClient $client;
+    private $client;
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->client = new WechatClient();
+    }
 
     /**
      * Service function for user authorization
@@ -26,13 +33,13 @@ class WechatService extends ContainerAware
      */
     public function authorize($appid, $secret) {
 
-        $code = $client->getWeChatCode();
+        $code = $this->client->getWeChatCode();
 
         if(is_null($code)){
             return false;
         }
 
-        return $client->authorize($appid, $secret, $code);
+        return $this->client->authorize($appid, $secret, $code);
     }
 
     /**
@@ -44,7 +51,7 @@ class WechatService extends ContainerAware
      */
     public function getUserInformation() {
 
-        $userInformation = $client->getUserInformation();
+        $userInformation = $this->client->getUserInformation();
 
         if(is_null($userInformation)) {
             return null;
