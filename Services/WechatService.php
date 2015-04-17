@@ -20,10 +20,21 @@ class WechatService extends ContainerAware
      */
     public function authorize() {
 
-        // call the WeChat authorization function
-        // TODO: use dummy data for now as authorize
-        // function parameters
         $client = new WechatClient();
-        return $wechat->authorize('', '', $code);
+
+        $code = $client->getWeChatCode();
+
+        if(is_null($client->getWeChatCode()){
+            return false;
+        }
+
+        //TODO: delete the WeChat code display, 
+        // only for test, delete the return true
+        echo $code;
+        return true;
+
+        //TODO: integrate the authorized function
+        // to get the current connected user information
+        //return $wechat->authorize('', '', $code);
     }
 }
