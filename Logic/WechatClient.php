@@ -3,6 +3,7 @@
 namespace jean553\WechatBundle\Logic;
 
 use jean553\WechatBundle\Traits\StringUtilsTrait;
+use \GuzzleHttp\Client;
 
 class WechatClient
 {
@@ -15,12 +16,6 @@ class WechatClient
      * @var string $openId Wechat openid of the user
      */
     private $openid;
-
-    /**
-     * Constructor
-     */
-    public function __construct() {
-    }
 
     /**
      * Authorize the user, use the appid, the URL code
