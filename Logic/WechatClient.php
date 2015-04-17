@@ -59,7 +59,7 @@ class WechatClient
     private function executeGuzzleRequest($url, $params) {
 
         // create the Guzzle request client
-        $client = new GuzzleHttp\Client();
+        $client = new \GuzzleHttp\Client();
 
         $response = $client->get(
             $url,
