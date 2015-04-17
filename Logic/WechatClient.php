@@ -24,14 +24,15 @@ class WechatClient
      */
     public function authorize($appid, $secret, $code) {
 
-        // create the autorization URL with parameters
-        $url = self::WECHAT_AUTH2_URL .
-            "?appid=" . $appid .
-            "&secret=" . $secret .
-            "&code=" . $code .
-            "&grant_type=authorization_code";
-
-        $oauth2Response = $this->executeGuzzleRequest($url);
+        $oauth2Response = $this->executeGuzzleRequest(
+            self::WECHAT_AUTH2_URL,
+            array(
+                "appid" => $appid,
+                "secret" => $secret,
+                "code" => $code,
+                "grant_type" => "authorization_code"
+            );
+        );
 
         if(is_null($oauth2Response)) {
             return false;
@@ -46,9 +47,20 @@ class WechatClient
      * Execute a Guzzle request and returns the answer.
      *
      * @param string $url URL to connect
+     * @param array $params URL parameters
      *
-     * @return array|null Request response on success, null on failure
+     * @return mixed Request response on success
      */
-    private function executeGuzzleRequest($url) {
+    private function executeGuzzleRequest($url, $params) {
+
+        // create the Guzzle request client
+        $client = new GuzzleHttp\Client();
+
+        $response = $client->get(
+            $url,
+            array("query" => $params)
+        );
+
+        return $response->json();
     }
 }
