@@ -12,10 +12,18 @@ class WechatClient
     const WECHAT_AUTH2_URL =
         "https://api.weixin.qq.com/sns/oauth2/access_token";
 
+    const WECHAT_AUTH2_USERINFO =
+        "https://api.weixin.qq.com/sns/userinfo";
+
     /**
-     * @var string $openId Wechat openid of the user
+     * @var string $openid Wechat openid of the user
      */
     private $openid;
+
+    /**
+     * @var string $accessToken Wechat access token
+     */
+    private $accessToken;
 
     /**
      * Authorize the user, use the appid, the URL code
@@ -43,7 +51,41 @@ class WechatClient
             return false;
         }
 
-        $openid = $oauth2Response['openid'];
+        $this->openid = $oauth2Response['openid'];
+        $this->accessToken = $oauth2Response['access_token'];
+
+        // get the user information
+        if(!$this->findUserInformation()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Find the WeChat user information
+     * according to the open id
+     *
+     * @param string $accessToken WeChat access token
+     * @param string $openId WeChat user OpenId
+     *
+     * @return boolean get user information success or failure
+     */
+    private function findUserInformation() {
+
+        $oauth2Response = $this->executeGuzzleRequest(
+            self::WECHAT_AUTH2_USERINFO,
+            array(
+                "access_token" => $this->accessToken,
+                "openid" => $this->openid
+            )
+        );
+
+        if(is_null($oauth2Response)) {
+            return false;
+        }
+
+        print_r($oauth2Response);
 
         return true;
     }
