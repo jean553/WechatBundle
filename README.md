@@ -2,6 +2,8 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jean553/WechatBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jean553/WechatBundle/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/jean553/WechatBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/jean553/WechatBundle/?branch=master)
 
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
 # WechatBundle
 
 PHP Bundle for WeChat. By developing applications, it is often required to call WeChat services ( like get all connected user information, authorize an user to connect... etc... ). The goal of this bundle is to group them all. 
