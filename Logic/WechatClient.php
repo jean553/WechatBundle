@@ -15,6 +15,12 @@ class WechatClient
     const WECHAT_AUTH2_USERINFO =
         "https://api.weixin.qq.com/sns/userinfo";
 
+    const WECHAT_JS_API =
+        "https://api.wechat.com/cgi-bin/ticket/getticket";
+
+    const WECHAT_JS_AUTHENTICATION =
+        "https://api.wechat.com/cgi-bin/token";
+
     /**
      * @var string $openid Wechat openid of the user
      */
@@ -24,6 +30,11 @@ class WechatClient
      * @var string $accessToken Wechat access token
      */
     private $accessToken;
+
+    /**
+     * @var string $jsApiToken Wechat JS API token
+     */
+    private $jsApiToken;
 
     /**
      * Authorize the user, use the appid, the URL code
@@ -36,6 +47,19 @@ class WechatClient
      * @return boolean authorization succeed or failure
      */
     public function authorize($appid, $secret, $code) {
+
+        $jsApiResponse = $this->executeGuzzleRequest(
+            self::WECHAT_JS_AUTHENTICATION,
+            array(
+                "grant_type" => "client_credential",
+                "appid" => $appid,
+                "secret" => $secret
+            )
+        );
+
+        if(is_null($jsApiResponse)) {
+            return false;
+        }
 
         $oauth2Response = $this->executeGuzzleRequest(
             self::WECHAT_AUTH2_URL,
@@ -53,6 +77,7 @@ class WechatClient
 
         $this->openid = $oauth2Response['openid'];
         $this->accessToken = $oauth2Response['access_token'];
+        $this->jsApiToken = $jsApiResponse['access_token'];
 
         return true;
     }
@@ -121,4 +146,26 @@ class WechatClient
             '&'
         );
     }
+
+    /**
+     * Returns the WeChat JS API tocken object
+     *
+     * @return array|null token
+     */
+    public function getJSAPITicket() {
+
+        $jsApiResponse = $this->executeGuzzleRequest(
+            self::WECHAT_JS_API,
+            array(
+                "access_token" => $this->jsApiToken,
+                "type" => "jsapi"
+            )
+        );
+
+        if(is_null($jsApiResponse)) {
+            return null;
+        }
+
+        return $jsApiResponse;
+   }
 }

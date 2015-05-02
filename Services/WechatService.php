@@ -72,4 +72,20 @@ class WechatService extends ContainerAware
             'privilege' => $userInformation['privilege']
         );
     }
+
+   /**
+    * Returns the WeChat JS API ticket
+    *
+    * @return string WeChat JS API ticket
+    */
+    public function getJSAPITicket() {
+
+        $jsApi = $this->client->getJSAPITicket();
+
+        if(is_null($jsApi)) {
+            return null;
+        }
+
+        return $jsApi['ticket'];
+    }
 }
